@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.*
+!.env.example
+!.env.zen.example
+npm-debug.log*
+.DS_Store
+tmp/
+*.log
+
+# build artifacts
+dist/
+gui/bin/
+gui/obj/
+ZenProxy.exe
+ZenProxyUI.exe
+zen-proxy-bundle.cjs
+sea-prep.blob
+sea-config.json

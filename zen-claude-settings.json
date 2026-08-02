@@ -1,0 +1,19 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:4041",
+    "ANTHROPIC_MODEL": "claude-code-proxy",
+    "ANTHROPIC_API_KEY": "claude-zen-local-key",
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "model": "claude-code-proxy",
+  "modelSettings": {
+    "thinking": {
+      "enabled": true,
+      "budgetTokens": 8192
+    },
+    "max_tokens": 32000,
+    "context_window": 1000000,
+    "temperature": 0.2,
+    "top_p": 0.95
+  }
+}

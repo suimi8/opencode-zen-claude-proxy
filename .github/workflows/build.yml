@@ -1,0 +1,72 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            rid: win-x64
+          - os: ubuntu-latest
+            rid: linux-x64
+          - os: macos-latest
+            rid: osx-arm64
+          - os: macos-latest
+            rid: osx-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build SEA proxy binary
+        run: node scripts/build-sea.mjs
+
+      - name: Publish Avalonia GUI
+        run: dotnet publish gui/ZenProxyUI.csproj -c Release -r ${{ matrix.rid }} --self-contained true -o dist/app
+
+      - name: Bundle proxy binary with GUI
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            cp dist/windows-x64/ZenProxy.exe dist/app/
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            cp dist/macos-*/zen-proxy dist/app/zen-proxy
+          else
+            cp dist/linux-*/zen-proxy dist/app/zen-proxy
+          fi
+          ls -la dist/app/
+
+      - name: Package
+        shell: bash
+        run: |
+          cd dist/app
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            powershell -Command "Compress-Archive -Path * -DestinationPath ../zen-proxy-${{ matrix.rid }}.zip -Force"
+          else
+            zip -r ../zen-proxy-${{ matrix.rid }}.zip .
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zen-proxy-${{ matrix.rid }}
+          path: dist/zen-proxy-${{ matrix.rid }}.zip
+
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/zen-proxy-${{ matrix.rid }}.zip

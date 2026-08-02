@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="450" viewBox="0 0 1180 450" role="img" aria-labelledby="title desc">
+  <title id="title">Automated test run terminal capture</title>
+  <desc id="desc">Terminal-style capture showing Node test output for the proxy translation suite.</desc>
+  <rect width="1180" height="450" fill="#101418"/>
+  <rect x="26" y="24" width="1128" height="402" rx="8" fill="#151a20" stroke="#2b343d"/>
+  <circle cx="58" cy="54" r="7" fill="#ff5f57"/>
+  <circle cx="82" cy="54" r="7" fill="#ffbd2e"/>
+  <circle cx="106" cy="54" r="7" fill="#28c840"/>
+  <text x="138" y="60" fill="#8f98a3" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="15">npm-test</text>
+  <text x="52" y="104" fill="#7dd3fc" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">$ npm test</text>
+  <text x="52" y="144" fill="#d6deeb" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">&gt; claude-code-zen-proxy@0.1.0 test</text>
+  <text x="52" y="174" fill="#d6deeb" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">&gt; node --test</text>
+  <text x="52" y="224" fill="#a7f3d0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">ok 1 - test/translation.test.js</text>
+  <text x="52" y="254" fill="#a7f3d0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18">ok 2 - test/server.test.js</text>
+  <text x="52" y="304" fill="#fef3c7" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18"># tests 7</text>
+  <text x="52" y="334" fill="#a7f3d0" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18"># pass 7</text>
+  <text x="52" y="364" fill="#d6deeb" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18"># fail 0</text>
+  <text x="52" y="394" fill="#d6deeb" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="18"># duration_ms 54.009</text>
+</svg>

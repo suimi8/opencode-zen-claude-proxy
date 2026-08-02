@@ -1,0 +1,5 @@
+{
+  "ANTHROPIC_BASE_URL": "http://127.0.0.1:4040",
+  "ANTHROPIC_MODEL": "claude-code-proxy",
+  "ANTHROPIC_API_KEY": "choose-a-local-proxy-key"
+}

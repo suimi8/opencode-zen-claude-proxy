@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ZenProxyUI.MainWindow"
+        Title="ZenProxy"
+        Width="880" Height="540" MinWidth="640" MinHeight="380"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Microsoft YaHei UI, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="12,10">
+      <Button x:Name="StartBtn" Content="启动代理" Width="100" Height="32" Background="#34A853" Foreground="White" Click="OnStartClick"/>
+      <Button x:Name="StopBtn" Content="停止代理" Width="100" Height="32" Background="#D9534F" Foreground="White" IsEnabled="False" Click="OnStopClick"/>
+      <Button x:Name="ClearBtn" Content="清空日志" Width="100" Height="32" Background="#6C757D" Foreground="White" Click="OnClearClick"/>
+      <Button x:Name="PinBtn" Content="窗口置顶" Width="100" Height="32" Background="#6C757D" Foreground="White" Click="OnPinClick"/>
+      <Button x:Name="SettingsBtn" Content="设置" Width="100" Height="32" Background="#5E708D" Foreground="White" Click="OnSettingsClick"/>
+    </StackPanel>
+
+    <Border DockPanel.Dock="Bottom" Background="#FFFFFF" BorderBrush="#E4E7EE" BorderThickness="0,1,0,0" Padding="12,8">
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock x:Name="StatusText" VerticalAlignment="Center" Text="状态: 未运行" Foreground="#2D343F"/>
+        <TextBlock x:Name="InfoText" Grid.Column="1" VerticalAlignment="Center" Foreground="#787E8B" Text="端口 4050"/>
+      </Grid>
+    </Border>
+
+    <Border Background="#FFFFFF" Padding="8">
+      <ListBox x:Name="LogList" Background="Transparent" FontFamily="Consolas, Menlo, monospace" FontSize="13">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Display}" Foreground="{Binding Color}" TextWrapping="Wrap"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Border>
+  </DockPanel>
+</Window>

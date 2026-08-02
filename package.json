@@ -1,0 +1,23 @@
+{
+  "name": "claude-code-zen-proxy",
+  "version": "0.1.0",
+  "description": "Anthropic-compatible Claude Code proxy for OpenCode Zen and OpenAI-compatible chat completions models.",
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "claude-code",
+    "anthropic-api",
+    "openai-compatible",
+    "opencode-zen",
+    "deepseek",
+    "model-switching",
+    "tool-calling",
+    "sse",
+    "proxy",
+    "nodejs"
+  ],
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  }
+}
