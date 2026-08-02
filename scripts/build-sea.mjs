@@ -31,11 +31,17 @@ function run(cmd, args, opts = {}) {
   if (r.status !== 0) process.exit(r.status ?? 1);
 }
 
+// npx: run via node on Windows (npx.cmd cannot be spawned directly), directly on POSIX
+function runNpx(args) {
+  if (process.platform === "win32") run(process.execPath, [npxCli, ...args]);
+  else run("npx", args);
+}
+
 console.log(`[build-sea] platform=${rid}`);
 
 // 1. bundle with esbuild
-run(process.execPath, [
-  npxCli, "--yes", "esbuild",
+runNpx([
+  "--yes", "esbuild",
   join(projDir, "zen-proxy-entry.js"),
   "--bundle", "--platform=node", "--format=cjs",
   `--outfile=${join(projDir, "zen-proxy-bundle.cjs")}`,
@@ -56,7 +62,7 @@ mkdirSync(distDir, { recursive: true });
 copyFileSync(process.execPath, outPath);
 
 // 5. inject the SEA blob
-run(process.execPath, [npxCli, "--yes", "postject", outPath, "NODE_SEA_BLOB", join(projDir, "sea-prep.blob"), "--sentinel-fuse", FUSE]);
+runNpx(["--yes", "postject", outPath, "NODE_SEA_BLOB", join(projDir, "sea-prep.blob"), "--sentinel-fuse", FUSE]);
 
 // 6. Windows only: switch PE subsystem to GUI (no console window)
 if (process.platform === "win32") {
